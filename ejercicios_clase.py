@@ -37,9 +37,24 @@ def ej1():
     '''
 
 
+def contar_lineas():
+    cantidad_lineas = 0
+    fi = open('notas.txt', 'r')
+    for lineas in ('notas.txt'):
+        lineas = fi.readline()
+        cantidad_lineas += 1
+    print('El texto tiene', cantidad_lineas, 'lineas')
+    fi.close()
+
+
+if __name__ == '__main__':
+    #contar_lineas()
+
+
 def ej2():
     # Ejercicios con archivos txt
     cantidad_lineas = 0
+
     '''
     Copy paste!!
     Deberá abrir dos archivo txt, uno para lectura (fi) y otro
@@ -54,6 +69,23 @@ def ej2():
     contar la cantidad de línea que se copiaron e imprimir
     al final del proceso el valor.
     '''
+def escribir_archivo():
+
+    cantidad_lineas = 0
+    fi = open('notas.txt', 'r')
+    for lineas in ('notas.txt'):
+        lineas = fi.readline()
+        fo = open('notas_copia.txt', 'a')
+        fo.writelines(lineas)
+        cantidad_lineas += 1
+    print('El nuevo archivo tiene', cantidad_lineas, 'lineas')
+    fo.close()
+    fi.close()
+
+
+if __name__ == '__main__':
+    #escribir_archivo()
+    
 
     # fi = open('nota.txt', 'r')
     # fo = open(.......)
@@ -71,8 +103,42 @@ def ej3():
     de departamentos de 3 ambientes disponibles.
     Al finalizar el proceso, imprima en pantalla los resultados.
     '''
+'''
+    fi = open('propiedades.csv', 'r')
+
+    '''
+
+def propiedades():
+    with open('propiedades.csv', 'r') as csvfile:
+        data = list(csv.DictReader(csvfile))
+        dos_amb = 0
+        tres_amb = 0
+        dif_amb = 0
+        for i in range(len(data)):
+            datos = data[i]
+            ambientes = datos.get('ambientes')
+            if ambientes == '':
+                ambientes = 0
+                dif_amb += 1
+            elif ambientes != '':
+                ambientes = int(ambientes)
+            if ambientes == 2:
+                dos_amb += 1
+            elif ambientes == 3:
+                tres_amb += 1
+            elif ambientes != 2 and ambientes != 3:
+                dif_amb += 1
+        print('Hay', dos_amb, 'departamentos de dos ambientes\n')
+        print('Hay', tres_amb, 'departamentos de tres ambientes\n')
+        print('Hay', dif_amb, 'propiedades que no cumplen con la busqueda\n')
 
 
+if __name__ == '__main__':
+    #propiedades()
+
+
+
+ 
 def ej4():
     # Ejercicios con diccionarios
     inventario = {'manzanas': 6}
@@ -144,8 +210,8 @@ def ej5():
 
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
-    ej1()
+    #ej1()
     #ej2()
-    #ej3()
+    ej3()
     #ej4()
     #ej5()
