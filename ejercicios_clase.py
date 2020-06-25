@@ -47,8 +47,9 @@ def contar_lineas():
     fi.close()
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
     #contar_lineas()
+
 
 
 def ej2():
@@ -83,7 +84,7 @@ def escribir_archivo():
     fi.close()
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
     #escribir_archivo()
     
 
@@ -133,7 +134,7 @@ def propiedades():
         print('Hay', dif_amb, 'propiedades que no cumplen con la busqueda\n')
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
     #propiedades()
 
 
@@ -167,6 +168,10 @@ def ej4():
     # 1) Bucle 1
     # Generar y completar el diccionario con las frutas y cantidades
     # ingresadas por consola hasta ingresar la palabra "FIN"
+    #inventarios = {}
+
+
+    #fi = open('inventario', 'r')
 
     # 2) Bucle 2
     # Ingresar por consola la fruta que desea conocer en stock
@@ -175,7 +180,7 @@ def ej4():
 
 def ej5():
     # Ejercicios con archivos CSV
-    inventario = {}
+    #inventario = {}
 
     '''
     Basado en el ejercicio anterior, genere un archivo CSV
@@ -207,11 +212,43 @@ def ej5():
 
     # writer.writerow({'Fruta Verdura': ....., 'Cantidad': ....})
 
+    csvfile = open('inventario2.csv', 'a', newline='')
+    cant = 0.0
+    header = ['vegetales', 'cantidad']
+    writer = csv.DictWriter(csvfile, fieldnames=header)
+    #writer.writeheader()
+    while True:
+        vegetales = input('vegetales: ?\n')
+        if vegetales == 'fin':
+            break
+        else:
+            cantidad = float(input('cantidad: ?\n'))
+            datos = {'vegetales': vegetales, 'cantidad': cantidad}
+            writer.writerow(datos)
+        csvfile.flush()
+    csvfile.close()
+
+    csvfile = open('inventario2.csv', 'r', newline='')
+    data = list(csv.DictReader(csvfile))
+    vegetal = input('Que vegetal: ?\n')
+    for i in range(len(data)):
+        row = data[i]
+        vegetales = row.get('vegetales')
+        cantidad = row.get('cantidad')
+        if vegetales == vegetal:
+            print('El stock de', vegetales, 'es de', cantidad, 'kilogramos')
+            print('')
+            break
+        elif vegetales != vegetal:
+            print('Ingresaste', vegetal, 'pero No existe en el inventario')
+            break
+    csvfile.close
+
 
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
     #ej1()
     #ej2()
-    ej3()
+    #ej3()
     #ej4()
-    #ej5()
+    ej5()
