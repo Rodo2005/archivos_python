@@ -241,6 +241,16 @@ def estadisticas():
                 segundos_run = seg_1_r + seg_2_r + seg_3_r
                 lista_run.append(segundos_run)    
                 
+                # Inove: Esta parte del código es la que calcula los valores máximos, mínimos
+                # y promedio, solo es necesario ejecutar esta porción del código 1 vez cuando se
+                # termina de recorrer un archivo.
+                # Es una nota de "color" a modo de performance, cuando estemos leyendo archivos o bases
+                # de datos de miles de miles de filas, cualquier operación extra que hagamos en el bucle
+                # de lecutra perjudicará luego el tiempo de ejecución del programa.
+                # Lo que está marcado entre línea punteada podría estar luego de terminar el bucle
+                # antes de comenzar con los "print" de los resultados
+                # --------------------------------------------------------------------------
+                
                 t_max_swim = max(lista_swim)
                 t_min_swim = min(lista_swim)
                 t_prom_swim = statistics.mean(lista_swim)
@@ -316,7 +326,7 @@ def estadisticas():
                 m = int(m)
                 s = int(s)
                 prom_run = datetime.time(h, m, s)
-                
+                # --------------------------------------------------------------------------
                     
             elif i == 2260:
                     break
