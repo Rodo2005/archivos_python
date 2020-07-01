@@ -76,12 +76,20 @@ def escribir_archivo():
     fi = open('notas.txt', 'r')
     for lineas in ('notas.txt'):
         lineas = fi.readline()
-        fo = open('notas_copia.txt', 'a')
+        fo = open('notas_copia.txt', 'a')   # Inove: Esta linea sería más "segura" si se ejecuta antes de empezar el bucle
         fo.writelines(lineas)
         cantidad_lineas += 1
     print('El nuevo archivo tiene', cantidad_lineas, 'lineas')
     fo.close()
     fi.close()
+    
+    # Inove: El ejercicio está perfectamente realizado, acotamos un comentario
+    # respecto al "open" del archivo de salida "fo". El archivo se está cerrando cuando se sale del loop
+    # pero esta está volviendo a abrir en cada iteración del loop, Python esto lo está manejando por detras
+    # pero para evitar un problema en el futuro siempre es conveniente cerrar un archivo antes de volverlo a abrir
+    # Se podría cerrar "fo" en cada iteración del loop, o para hacerlo más eficiente, solo abrirlo una vez
+    # antes de empezar el loop
+    # Es solo una nota de "color" para futuros casos no tener un problema "invisible" relacionado a esto
 
 
 #if __name__ == '__main__':
